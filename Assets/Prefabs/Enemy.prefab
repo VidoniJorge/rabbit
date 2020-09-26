@@ -189,3 +189,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 20
   currentHealth: 0
+  flashActive: 0
+  flashLengh: 0
+  expWhenDefeated: 10

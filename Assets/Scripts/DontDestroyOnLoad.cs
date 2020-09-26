@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class DontDestroyOnLoad : MonoBehaviour
 {
-    public static bool playCreated;
     void Start()
     {
-        if (!playCreated)
+        if (!PlayerController.playCreated)
         {
-            playCreated = true;
             DontDestroyOnLoad(this.transform.gameObject);
         }
         else

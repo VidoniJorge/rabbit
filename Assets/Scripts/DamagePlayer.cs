@@ -8,12 +8,7 @@ public class DamagePlayer : MonoBehaviour
     private const string tag_player = "Player";
     public int damage = 10;
     public DamageNumber damageNumber;
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+   
     void Update()
     {
        
@@ -28,8 +23,6 @@ public class DamagePlayer : MonoBehaviour
             DamageNumber clone = (DamageNumber)Instantiate(this.damageNumber, collision.transform.position, Quaternion.Euler(Vector3.zero));
             clone.damagePoints = damage;
             clone.damageText.color = Color.white;
-
-
         }
     }
 }
