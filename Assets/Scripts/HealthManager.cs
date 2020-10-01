@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ *  Script para controlar la vida objeto
+ */
 public class HealthManager : MonoBehaviour
 {
     public int maxHealth;
@@ -33,7 +36,7 @@ public class HealthManager : MonoBehaviour
         {
             this.gameObject.SetActive(false);
             if (this.gameObject.tag.Equals(Const.TAG_ENEMY)) {
-                GameObject.Find("Player").GetComponent<CharacterStats>().AddExperience(this.expWhenDefeated);
+                GameObject.Find(Const.TAG_PLAYER).GetComponent<CharacterStats>().AddExperience(this.expWhenDefeated);
             }
         }
 
