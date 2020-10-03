@@ -6,9 +6,12 @@ using UnityEngine.UI;
 
 public class DamagePlayer : MonoBehaviour
 {
-    public int damageBase = 10;
+    public int damageBase = 100;
     public DamageNumber damageNumber;
-   
+
+    const int damageMin = 1;
+    public float porcentajeDamege = 1;
+
     void Update()
     {
        
@@ -18,17 +21,24 @@ public class DamagePlayer : MonoBehaviour
     {
         if (collision.gameObject.tag.Equals(Const.TAG_PLAYER))
         {
-            int damage = calculateDamage();
-            collision.gameObject.GetComponent<HealthManager>()
-                .DamageCharacter(damage);
+            CharacterStats playerStat = collision.gameObject.GetComponent<CharacterStats>();
+            int damage = calculateDamage(playerStat.currentDefensePoint);
+            collision.gameObject.GetComponent<HealthManager>().DamageCharacter(damage);
+            
+
             DamageNumber clone = (DamageNumber)Instantiate(this.damageNumber, collision.transform.position, Quaternion.Euler(Vector3.zero));
             clone.damagePoints = damage;
             clone.damageText.color = Color.white;
         }
     }
 
-    private int calculateDamage()
-    {
-        return damageBase;
+    private int calculateDamage(int defense)
+    {   
+        float resultado = this.damageBase * porcentajeDamege - defense  ;
+        if(resultado > 0)
+        {
+            return (int)resultado;
+        }
+        return damageMin;
     }
 }
